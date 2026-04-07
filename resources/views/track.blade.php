@@ -538,7 +538,7 @@
             (object)[
                 'status'=>'pending',
                 'location'=>'Final Destination - #98146 115 SW 108th Street, Burien',
-                'description'=>'Held at customs for inspection - ON HOLD',
+                #'description'=>'Held at customs for inspection - ON HOLD',
                 'occurred_at'=>\Carbon\Carbon::parse('2026-04-12 15:00:00'),
                 'pending'=>true
             ],
