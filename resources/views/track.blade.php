@@ -521,7 +521,7 @@
 
                     @php
                         $events = $shipment->events ?? collect([
-                            (object)['status'=>'in_transit','location'=>'Denver Distribution Center','description'=>'Package in transit to destination','occurred_at'=>now()->subDays(3),'done'=>true],
+                            (object)['status'=>'in_transit','location'=>'Denver Distribution Center','description'=>'Package in transit to destination','occurred_at'=>now()->subDays(3),'pending'=>true],
                         ]);
                         $total = count((array)$events);
                         $loop_i = 0;
