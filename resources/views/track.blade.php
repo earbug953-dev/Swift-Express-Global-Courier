@@ -467,7 +467,7 @@
                 @if($status === 'on_hold' || $status === 'On Hold')
                     <div class="notice-text">
                         <i class="fas fa-exclamation-triangle"></i>
-                        Important Notice: PAC is at customs for Inspection
+                        Important Notice: Delivery Clearance 
                     </div>
                 @endif
             </div>
@@ -521,7 +521,27 @@
 
     @php
         $events = $shipment->events ?? collect([
-            (object)['status'=>'in_transit','location'=>'Denver Distribution Center','description'=>'Package in transit to destination','occurred_at'=>now()->subDays(3),'pending'=>true],
+            (object)[
+                'status'=>'pending',
+                'location'=>'Package Pickup - Edmonton International Airport',
+                'description'=>'Package picked up',
+                'occurred_at'=>\Carbon\Carbon::parse('2026-04-08 16:00:00'),
+                'pending'=>true
+            ],
+            (object)[
+                'status'=>'pending',
+                'location'=>'Transit Hub 1 - Denver International Airport',
+                'description'=>'Package in transit',
+                'occurred_at'=>\Carbon\Carbon::parse('2026-04-10 15:00:00'),
+                'pending'=>true
+            ],
+            (object)[
+                'status'=>'pending',
+                'location'=>'Final Destination - 17938 E. Oxford Dr Aurora, CO 80013',
+                'description'=>'Held at customs for inspection - ON HOLD',
+                'occurred_at'=>\Carbon\Carbon::parse('2026-04-12 15:00:00'),
+                'pending'=>true
+            ],
         ]);
         $total = count((array)$events);
         $loop_i = 0;
@@ -531,29 +551,20 @@
     @php
         $loop_i++;
         $isLast = ($loop_i === $total);
-        // Changed: Only mark as done if it's NOT the last item AND there's no pending flag
-        $isDone = !$isLast && !($event->pending ?? false);
-        // Active is the last item only if it's not marked as done/pending differently
-        $isActive = $isLast && !($event->pending ?? false);
-        // Pending is specifically for items with pending flag OR explicitly the last pending item
-        $isPending = ($event->pending ?? false) || ($isLast && !$isDone && !$isActive);
+        // Force all events to show as pending
+        $isDone = false;
+        $isActive = false;
         
-        $dotClass = $isDone ? 'dot-done' : ($isActive ? 'dot-active' : 'dot-pending');
-        $lineClass = $isDone ? 'done' : '';
-        $contentClass = $isActive ? 'active-item' : '';
-        $tagClass = $isDone ? 'tag-done' : ($isActive ? 'tag-active' : 'tag-pending');
-        $tagText = $isDone ? 'Done' : ($isActive ? 'Current' : 'Pending');
+        $dotClass = 'dot-pending';
+        $lineClass = '';
+        $contentClass = '';
+        $tagClass = 'tag-pending';
+        $tagText = 'Pending';
     @endphp
     <div class="timeline-item">
         <div class="timeline-left">
             <div class="timeline-dot {{ $dotClass }}">
-                @if($isDone)
-                    <i class="fas fa-check" style="font-size:9px"></i>
-                @elseif($isActive)
-                    <i class="fas fa-circle" style="font-size:7px"></i>
-                @else
-                    <i class="fas fa-circle" style="font-size:7px"></i>
-                @endif
+                <i class="fas fa-circle" style="font-size:7px"></i>
             </div>
             @if(!$isLast)
             <div class="timeline-line {{ $lineClass }}"></div>
@@ -573,7 +584,7 @@
     </div>
     @endforeach
 
-</div>
+                </div>
             </div>
 
             <!-- Current Location Map (Full) -->
