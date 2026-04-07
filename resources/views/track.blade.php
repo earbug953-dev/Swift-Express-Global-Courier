@@ -781,23 +781,23 @@
                 <div class="schedule-row">
                     <span style="color:#888;">Order Date</span>
                     <span style="font-weight:600;">
-                        {{ optional($shipment->created_at)->format('Apr 7, Y') ?? 'Apr 7, 2026' }}
+                        {{ optional($shipment->created_at)->format('Apr 8, Y') ?? 'Apr 8, 2026' }}
                     </span>
                 </div>
                 <div class="schedule-row">
                     <span style="color:#888;">Pickup Date</span>
                     <span style="font-weight:600;">
-                        {{ optional($shipment->pickup_date ?? $shipment->created_at)->format('M d, Y') ?? 'May 10, 2026' }}
+                        {{ optional($shipment->pickup_date ?? $shipment->created_at)->format('M d, Y') ?? 'Apr 12, 2026' }}
                     </span>
                 </div>
                 <div class="schedule-row">
                     <span style="color:#888;">Pickup Time</span>
-                    <span style="font-weight:600;">12:00</span>
+                    <span style="font-weight:600;">15:00</span>
                 </div>
                 <div class="schedule-row">
                     <span style="color:#888;">Est. Delivery</span>
                     <span style="font-weight:600;">
-                        {{ optional($shipment->estimated_delivery)->format('M d, Y') ?? 'May 15, 2026' }}
+                        {{ optional($shipment->estimated_delivery)->format('M d, Y') ?? 'Apr 15, 2026' }}
                     </span>
                 </div>
                 <div class="schedule-row">
