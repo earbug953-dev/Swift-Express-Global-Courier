@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\TrackingController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +33,5 @@ Route::prefix('admin')->group(function () {
     Route::get('/shipments/{id}/delete', [AdminController::class, 'delete'])
         ->name('admin.shipments.delete');
 });
+Route::get('/payment/checkout/{id}', [PaymentController::class, 'checkout'])
+    ->name('payment.checkout');

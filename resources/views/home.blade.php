@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Swift Express Global Courier</title>
 
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
@@ -123,7 +128,7 @@ body {
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="#">SwiftXpress</a>
+        <a class="navbar-brand" href="#">Swift Express Global Courier</a>
 
         <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
@@ -257,7 +262,7 @@ body {
             <div class="col-md-7">
                 <h3 class="fw-bold text-primary">About Us</h3>
                 <p class="text-muted">
-                    SwiftXpress Cargo is a trusted global logistics provider delivering fast, secure,
+                    Swift Express Global Courier Cargo is a trusted global logistics provider delivering fast, secure,
                     and efficient shipping solutions. With advanced tracking systems and a strong
                     international network, we ensure your goods reach their destination safely.
                 </p>
