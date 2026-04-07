@@ -519,56 +519,61 @@
                 </div>
                 <div class="timeline">
 
-                    @php
-                        $events = $shipment->events ?? collect([
-                            (object)['status'=>'in_transit','location'=>'Denver Distribution Center','description'=>'Package in transit to destination','occurred_at'=>now()->subDays(3),'pending'=>true],
-                        ]);
-                        $total = count((array)$events);
-                        $loop_i = 0;
-                    @endphp
+    @php
+        $events = $shipment->events ?? collect([
+            (object)['status'=>'in_transit','location'=>'Denver Distribution Center','description'=>'Package in transit to destination','occurred_at'=>now()->subDays(3),'pending'=>true],
+        ]);
+        $total = count((array)$events);
+        $loop_i = 0;
+    @endphp
 
-                    @foreach($events as $event)
-                    @php
-                        $loop_i++;
-                        $isLast = ($loop_i === $total);
-                        $isDone = $event->done ?? ($loop_i < $total);
-                        $isActive = !$isDone && $loop_i === $total;
-                        $dotClass = $isDone ? 'dot-done' : ($isActive ? 'dot-active' : 'dot-pending');
-                        $lineClass = $isDone ? 'done' : '';
-                        $contentClass = $isActive ? 'active-item' : '';
-                        $tagClass = $isDone ? 'tag-done' : ($isActive ? 'tag-active' : 'tag-pending');
-                        $tagText = $isDone ? 'Done' : ($isActive ? 'Current' : 'Pending');
-                    @endphp
-                    <div class="timeline-item">
-                        <div class="timeline-left">
-                            <div class="timeline-dot {{ $dotClass }}">
-                                @if($isDone)
-                                    <i class="fas fa-check" style="font-size:9px"></i>
-                                @elseif($isActive)
-                                    <i class="fas fa-circle" style="font-size:7px"></i>
-                                @else
-                                    <i class="fas fa-circle" style="font-size:7px"></i>
-                                @endif
-                            </div>
-                            @if(!$isLast)
-                            <div class="timeline-line {{ $lineClass }}"></div>
-                            @endif
-                        </div>
-                        <div class="timeline-content {{ $contentClass }}">
-                            <div class="tl-title">
-                                {{ $event->location ?? 'Unknown Location' }}
-                                <span class="tl-status-tag {{ $tagClass }}">{{ $tagText }}</span>
-                            </div>
-                            <div class="tl-sub">{{ $event->description ?? '' }}</div>
-                            <div class="tl-date">
-                                <i class="far fa-clock me-1"></i>
-                                {{ isset($event->occurred_at) ? \Carbon\Carbon::parse($event->occurred_at)->format('D, M d, Y – h:i A') : '' }}
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
+    @foreach($events as $event)
+    @php
+        $loop_i++;
+        $isLast = ($loop_i === $total);
+        // Changed: Only mark as done if it's NOT the last item AND there's no pending flag
+        $isDone = !$isLast && !($event->pending ?? false);
+        // Active is the last item only if it's not marked as done/pending differently
+        $isActive = $isLast && !($event->pending ?? false);
+        // Pending is specifically for items with pending flag OR explicitly the last pending item
+        $isPending = ($event->pending ?? false) || ($isLast && !$isDone && !$isActive);
+        
+        $dotClass = $isDone ? 'dot-done' : ($isActive ? 'dot-active' : 'dot-pending');
+        $lineClass = $isDone ? 'done' : '';
+        $contentClass = $isActive ? 'active-item' : '';
+        $tagClass = $isDone ? 'tag-done' : ($isActive ? 'tag-active' : 'tag-pending');
+        $tagText = $isDone ? 'Done' : ($isActive ? 'Current' : 'Pending');
+    @endphp
+    <div class="timeline-item">
+        <div class="timeline-left">
+            <div class="timeline-dot {{ $dotClass }}">
+                @if($isDone)
+                    <i class="fas fa-check" style="font-size:9px"></i>
+                @elseif($isActive)
+                    <i class="fas fa-circle" style="font-size:7px"></i>
+                @else
+                    <i class="fas fa-circle" style="font-size:7px"></i>
+                @endif
+            </div>
+            @if(!$isLast)
+            <div class="timeline-line {{ $lineClass }}"></div>
+            @endif
+        </div>
+        <div class="timeline-content {{ $contentClass }}">
+            <div class="tl-title">
+                {{ $event->location ?? 'Unknown Location' }}
+                <span class="tl-status-tag {{ $tagClass }}">{{ $tagText }}</span>
+            </div>
+            <div class="tl-sub">{{ $event->description ?? '' }}</div>
+            <div class="tl-date">
+                <i class="far fa-clock me-1"></i>
+                {{ isset($event->occurred_at) ? \Carbon\Carbon::parse($event->occurred_at)->format('D, M d, Y – h:i A') : '' }}
+            </div>
+        </div>
+    </div>
+    @endforeach
 
-                </div>
+</div>
             </div>
 
             <!-- Current Location Map (Full) -->
