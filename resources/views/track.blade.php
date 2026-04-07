@@ -521,9 +521,7 @@
 
                     @php
                         $events = $shipment->events ?? collect([
-                            (object)['status'=>'picked_up','location'=>'Aéromodèle International Airport','description'=>'Package received at origin facility','occurred_at'=>now()->subDays(5),'done'=>true],
-                            (object)['status'=>'in_transit','location'=>'Geneva International Airport','description'=>'Transit Hub 1 — package in transit','occurred_at'=>now()->subDays(3),'done'=>true],
-                            (object)['status'=>'on_hold','location'=>'17988 S. Oakland Dr, Aurora, CO 80813','description'=>'Final Destination — Package held at customs','occurred_at'=>now()->subDays(1),'done'=>false],
+                            (object)['status'=>'in_transit','location'=>'Denver Distribution Center','description'=>'Package in transit to destination','occurred_at'=>now()->subDays(3),'done'=>true],
                         ]);
                         $total = count((array)$events);
                         $loop_i = 0;
@@ -603,19 +601,19 @@
                             <div class="party-icon sender-icon">
                                 <i class="fas fa-user"></i>
                             </div>
-                            <div class="party-name">{{ $shipment->sender_name ?? 'William Malek' }}</div>
+                            <div class="party-name">{{ $shipment->sender_name  }}</div>
                             <div class="party-detail">
                                 <i class="fas fa-envelope"></i>
-                                <span>{{ $shipment->sender_email ?? 'wm77@gmail.com' }}</span>
+                                <span>{{ $shipment->sender_email ?? 'dr.williamsmakishealthpage@outlookcom' }}</span>
                             </div>
                             <div class="party-detail">
                                 <i class="fas fa-phone"></i>
-                                <span>{{ $shipment->sender_phone ?? '+1 (876) 553-9011' }}</span>
+                                <span>{{ $shipment->sender_phone ?? '+1 (386) 260‑8546' }}</span>
                             </div>
                             <div class="party-detail">
                                 <i class="fas fa-map-marker-alt"></i>
                                 <span>
-                                    {{ $shipment->sender_address ?? '17988 S. Oakland Dr, Aronova, AI 30870' }},
+                                    {{ $shipment->sender_address ?? '5970 Mullen Way, #36560, Edmonton, AB T6R0T4' }},
                                     {{ $shipment->sender_city ?? '' }},
                                     {{ $shipment->sender_country ?? 'Canada' }}
                                 </span>
@@ -628,19 +626,19 @@
                             <div class="party-icon receiver-icon">
                                 <i class="fas fa-user-check"></i>
                             </div>
-                            <div class="party-name">{{ $shipment->receiver_name ?? 'Maribel Robins' }}</div>
+                            <div class="party-name">{{ $shipment->receiver_name }}</div>
                             <div class="party-detail">
                                 <i class="fas fa-envelope"></i>
-                                <span>{{ $shipment->receiver_email ?? 'rob77@gmail.com' }}</span>
+                                <span>{{ $shipment->receiver_email ?? ' caudexkitty@hotmail.com' }}</span>
                             </div>
                             <div class="party-detail">
                                 <i class="fas fa-phone"></i>
-                                <span>{{ $shipment->receiver_phone ?? '+1 (811) 847-3073' }}</span>
+                                <span>{{ $shipment->receiver_phone }}</span>
                             </div>
                             <div class="party-detail">
                                 <i class="fas fa-map-marker-alt"></i>
                                 <span>
-                                    {{ $shipment->receiver_address ?? '17988 S. Oakland Dr, Aurora, CO 80813' }},
+                                    {{ $shipment->receiver_address ?? '#98146 115 SW 108th Street, Burien, Washington ' }},
                                     {{ $shipment->receiver_city ?? '' }},
                                     {{ $shipment->receiver_country ?? 'United States' }}
                                 </span>
@@ -693,7 +691,7 @@
                     <i class="fas fa-camera"></i> Package Photo
                 </div>
                 <img src="{{ asset('uploads/' . $shipment->product_image) }}" class="pkg-photo">
-                <div class="pkg-photo-caption">{{ $shipment->goods_description ?? 'Cargo present' }}</div>
+                <div class="pkg-photo-caption">{{ $shipment->goods_description ?? 'PROTOCOL PACKAGE' }}</div>
             </div>
             @else
             <!-- Placeholder photo for demo -->
@@ -718,7 +716,7 @@
                 <div class="detail-row">
                     <span class="detail-label">Tracking Number</span>
                     <span class="detail-value">
-                        <a href="#">{{ $shipment->tracking_number ?? 'SWF123456' }}</a>
+                        <a href="#">{{ $shipment->tracking_number }}</a>
                     </span>
                 </div>
                 <div class="detail-row">
@@ -728,12 +726,12 @@
                 <div class="detail-row">
                     <span class="detail-label">Product Type</span>
                     <span class="detail-value">
-                        {{ $shipment->package_type_label ?? ($shipment->package_type ?? 'Cargo product') }}
+                        {{ $shipment->package_type_label ?? ($shipment->package_type ?? 'PROTOCOL PACKAGE') }}
                     </span>
                 </div>
                 <div class="detail-row">
                     <span class="detail-label">Weight</span>
-                    <span class="detail-value">{{ $shipment->weight ?? '4.542' }} kg</span>
+                    <span class="detail-value">{{ $shipment->weight ?? '10.542' }} kg</span>
                 </div>
                 <div class="detail-row">
                     <span class="detail-label">Quantity</span>
@@ -767,13 +765,13 @@
                 <div class="schedule-row">
                     <span style="color:#888;">Order Date</span>
                     <span style="font-weight:600;">
-                        {{ optional($shipment->created_at)->format('Apr 27, Y') ?? 'Apr 27, 1947' }}
+                        {{ optional($shipment->created_at)->format('Apr 7, Y') ?? 'Apr 7, 2026' }}
                     </span>
                 </div>
                 <div class="schedule-row">
                     <span style="color:#888;">Pickup Date</span>
                     <span style="font-weight:600;">
-                        {{ optional($shipment->pickup_date ?? $shipment->created_at)->format('M d, Y') ?? 'Feb 05, 2026' }}
+                        {{ optional($shipment->pickup_date ?? $shipment->created_at)->format('M d, Y') ?? 'May 10, 2026' }}
                     </span>
                 </div>
                 <div class="schedule-row">
@@ -783,7 +781,7 @@
                 <div class="schedule-row">
                     <span style="color:#888;">Est. Delivery</span>
                     <span style="font-weight:600;">
-                        {{ optional($shipment->estimated_delivery)->format('M d, Y') ?? 'Feb 03, 2026' }}
+                        {{ optional($shipment->estimated_delivery)->format('M d, Y') ?? 'May 15, 2026' }}
                     </span>
                 </div>
                 <div class="schedule-row">
