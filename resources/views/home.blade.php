@@ -144,10 +144,9 @@ body {
 
     <!-- LEFT TEXT -->
     <div class="col-md-6 hero-text">
-        <h1>Effective Logistics Solutions</h1>
+        <h1>Swift Express Global Courier: Fast, Reliable, and Secure Delivery Solutions</h1>
         <p>
-            We provide fast, secure, and reliable cargo delivery worldwide.
-            Experience next-level logistics with real-time tracking and global coverage.
+            At Swift Express, we're passionate about connecting you to the world. Our global courier services ensure your packages reach their destination quickly, safely, and efficiently. With a vast network of partners and cutting-edge tracking technology, we provide seamless logistics solutions for businesses and individuals alike. Whether it's urgent documents or large shipments, trust Swift Express to deliver excellence every time.
         </p>
         <button class="btn btn-main mt-3">Explore Services →</button>
     </div>
