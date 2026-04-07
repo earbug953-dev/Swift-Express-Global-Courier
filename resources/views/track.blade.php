@@ -537,7 +537,7 @@
             ],
             (object)[
                 'status'=>'pending',
-                'location'=>'Final Destination - 17938 E. Oxford Dr Aurora, CO 80013',
+                'location'=>'Final Destination - #98146 115 SW 108th Street, Burien',
                 'description'=>'Held at customs for inspection - ON HOLD',
                 'occurred_at'=>\Carbon\Carbon::parse('2026-04-12 15:00:00'),
                 'pending'=>true
@@ -761,7 +761,7 @@
                 </div>
                 <div class="detail-row">
                     <span class="detail-label">Courier Service</span>
-                    <span class="detail-value">Multi-stop courier</span>
+                    <span class="detail-value">Swift Express Global Courier</span>
                 </div>
                 <div class="detail-row">
                     <span class="detail-label">Payment Method</span>
