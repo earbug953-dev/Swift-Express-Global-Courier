@@ -787,7 +787,7 @@
                 <div class="schedule-row">
                     <span style="color:#888;">Pickup Date</span>
                     <span style="font-weight:600;">
-                        {{ optional($shipment->pickup_date ?? $shipment->created_at)->format('M d, Y') ?? 'Apr 12, 2026' }}
+                        {{ optional($shipment->pickup_date ?? 'Apr 8, 2026' )->format('M d, Y') }}
                     </span>
                 </div>
                 <div class="schedule-row">
@@ -802,7 +802,7 @@
                 </div>
                 <div class="schedule-row">
                     <span style="color:#888;">Transit Time</span>
-                    <span style="font-weight:600;">5 days</span>
+                    <span style="font-weight:600;">3 days</span>
                 </div>
             </div>
 
