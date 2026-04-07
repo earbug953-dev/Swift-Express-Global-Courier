@@ -437,12 +437,10 @@
         <span class="lang-select">
             <i class="fas fa-globe" style="font-size:12px"></i> English &nbsp;▾
         </span>
-        <a href="/" class="logo">Swift<span>Drop</span></a>
+        <a href="/" class="logo">Swift Express Global Courier</a>
     </div>
     <div class="nav-links d-flex align-items-center gap-2">
         <a href="/"><i class="fas fa-search" style="font-size:11px"></i> &nbsp;TRACKING PROCEDURE</a>
-        <a href="/" class="btn-login">Log In</a>
-        <a href="/register" class="btn-track">Register</a>
     </div>
 </div>
 
