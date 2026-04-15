@@ -539,8 +539,10 @@
         $loop_i++;
         $isLast = ($loop_i === $total);
         // Force all events to show as pending
+                    $lineClass = '';
+        $contentClass = '';
         $isDone = !$event->pending; // done if pending = false
-
+        
 if ($isDone) {
     $dotClass = 'dot-done';     // green
     $tagClass = 'tag-success';  // green label
