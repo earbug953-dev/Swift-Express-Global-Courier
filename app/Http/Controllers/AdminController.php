@@ -98,7 +98,7 @@ class AdminController extends Controller
                         'location'    => $update['location'],
                         'description' => $update['description'] ?? '',
                         'occurred_at' => now(),
-                        'status' => $update['status'] ?? 'Pending',
+                        'status' => $update['status'],
                         'pending' => $update['pending'] ?? false,
                     ]);
                 }
