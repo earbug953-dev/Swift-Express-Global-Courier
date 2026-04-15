@@ -132,6 +132,15 @@
             color: #888;
             margin-bottom: 3px;
         }
+        .dot-done {
+    background: #28a745;
+    border-color: #28a745;
+}
+
+.tag-success {
+    background: #28a745;
+    color: #fff;
+}
         .progress-wrap .progress {
             height: 8px;
             border-radius: 10px;
@@ -530,14 +539,17 @@
         $loop_i++;
         $isLast = ($loop_i === $total);
         // Force all events to show as pending
-        $isDone = false;
-        $isActive = false;
+        $isDone = !$event->pending; // done if pending = false
 
-        $dotClass = 'dot-pending';
-        $lineClass = '';
-        $contentClass = '';
-        $tagClass = 'tag-pending';
-        $tagText = 'Pending';
+if ($isDone) {
+    $dotClass = 'dot-done';     // green
+    $tagClass = 'tag-success';  // green label
+    $tagText = 'Completed';
+} else {
+    $dotClass = 'dot-pending';  // yellow/gray
+    $tagClass = 'tag-pending';
+    $tagText = 'Pending';
+}
     @endphp
     <div class="timeline-item">
         <div class="timeline-left">
