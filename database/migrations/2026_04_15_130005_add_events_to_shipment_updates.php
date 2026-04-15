@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::table('shipment_updates', function (Blueprint $table) {
             $table->string('status');
-            $table->string('location');
-            $table->text('description')->nullable();
             $table->timestamp('occurred_at');
             $table->boolean('pending')->default(false);
         });
