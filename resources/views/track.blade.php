@@ -467,7 +467,7 @@
                 @if($status === 'on_hold' || $status === 'On Hold')
                     <div class="notice-text">
                         <i class="fas fa-exclamation-triangle"></i>
-                        Important Notice: PAC is at customs for Inspection
+                        Important Notice: Delivery Clearance
                     </div>
                 @endif
             </div>
@@ -519,54 +519,48 @@
                 </div>
                 <div class="timeline">
 
-                    @php
-                        $events = $shipment->events ?? collect([
-                            (object)['status'=>'in_transit','location'=>'Denver Distribution Center','description'=>'Package in transit to destination','occurred_at'=>now()->subDays(3),'pending'=>true],
-                        ]);
-                        $total = count((array)$events);
-                        $loop_i = 0;
-                    @endphp
 
-                    @foreach($events as $event)
-                    @php
-                        $loop_i++;
-                        $isLast = ($loop_i === $total);
-                        $isDone = $event->done ?? ($loop_i < $total);
-                        $isActive = !$isDone && $loop_i === $total;
-                        $dotClass = $isDone ? 'dot-done' : ($isActive ? 'dot-active' : 'dot-pending');
-                        $lineClass = $isDone ? 'done' : '';
-                        $contentClass = $isActive ? 'active-item' : '';
-                        $tagClass = $isDone ? 'tag-done' : ($isActive ? 'tag-active' : 'tag-pending');
-                        $tagText = $isDone ? 'Done' : ($isActive ? 'Current' : 'Pending');
-                    @endphp
-                    <div class="timeline-item">
-                        <div class="timeline-left">
-                            <div class="timeline-dot {{ $dotClass }}">
-                                @if($isDone)
-                                    <i class="fas fa-check" style="font-size:9px"></i>
-                                @elseif($isActive)
-                                    <i class="fas fa-circle" style="font-size:7px"></i>
-                                @else
-                                    <i class="fas fa-circle" style="font-size:7px"></i>
-                                @endif
-                            </div>
-                            @if(!$isLast)
-                            <div class="timeline-line {{ $lineClass }}"></div>
-                            @endif
-                        </div>
-                        <div class="timeline-content {{ $contentClass }}">
-                            <div class="tl-title">
-                                {{ $event->location ?? 'Unknown Location' }}
-                                <span class="tl-status-tag {{ $tagClass }}">{{ $tagText }}</span>
-                            </div>
-                            <div class="tl-sub">{{ $event->description ?? '' }}</div>
-                            <div class="tl-date">
-                                <i class="far fa-clock me-1"></i>
-                                {{ isset($event->occurred_at) ? \Carbon\Carbon::parse($event->occurred_at)->format('D, M d, Y – h:i A') : '' }}
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
+       @php
+    $events = $shipment->events;
+    $total = $events->count();
+    $loop_i = 0;
+@endphp
+    @foreach($events as $event)
+    @php
+        $loop_i++;
+        $isLast = ($loop_i === $total);
+        // Force all events to show as pending
+        $isDone = false;
+        $isActive = false;
+
+        $dotClass = 'dot-pending';
+        $lineClass = '';
+        $contentClass = '';
+        $tagClass = 'tag-pending';
+        $tagText = 'Pending';
+    @endphp
+    <div class="timeline-item">
+        <div class="timeline-left">
+            <div class="timeline-dot {{ $dotClass }}">
+                <i class="fas fa-circle" style="font-size:7px"></i>
+            </div>
+            @if(!$isLast)
+            <div class="timeline-line {{ $lineClass }}"></div>
+            @endif
+        </div>
+        <div class="timeline-content {{ $contentClass }}">
+            <div class="tl-title">
+                {{ $event->location ?? 'Unknown Location' }}
+                <span class="tl-status-tag {{ $tagClass }}">{{ $tagText }}</span>
+            </div>
+            <div class="tl-sub">{{ $event->description ?? '' }}</div>
+            <div class="tl-date">
+                <i class="far fa-clock me-1"></i>
+                {{ isset($event->occurred_at) ? \Carbon\Carbon::parse($event->occurred_at)->format('D, M d, Y – h:i A') : '' }}
+            </div>
+        </div>
+    </div>
+    @endforeach
 
                 </div>
             </div>
@@ -745,7 +739,7 @@
                 </div>
                 <div class="detail-row">
                     <span class="detail-label">Courier Service</span>
-                    <span class="detail-value">Multi-stop courier</span>
+                    <span class="detail-value">Swift Express Global Courier</span>
                 </div>
                 <div class="detail-row">
                     <span class="detail-label">Payment Method</span>
@@ -765,28 +759,31 @@
                 <div class="schedule-row">
                     <span style="color:#888;">Order Date</span>
                     <span style="font-weight:600;">
-                        {{ optional($shipment->created_at)->format('Apr 7, Y') ?? 'Apr 7, 2026' }}
+                        {{ $shipment->created_at->format('Apr 8, Y') ?? 'Apr 8, 2026' }}
                     </span>
                 </div>
                 <div class="schedule-row">
                     <span style="color:#888;">Pickup Date</span>
                     <span style="font-weight:600;">
-                        {{ optional($shipment->pickup_date ?? $shipment->created_at)->format('M d, Y') ?? 'May 10, 2026' }}
+                        {{ $shipment->pickup_date->format('M d, Y') ?? 'Apr 8, 2026' }}
                     </span>
                 </div>
                 <div class="schedule-row">
                     <span style="color:#888;">Pickup Time</span>
-                    <span style="font-weight:600;">12:00</span>
+                    <span style="font-weight:600;">
+                        {{ $shipment->pickup_time ?? '15:00' }}
+                    </span>
+
                 </div>
                 <div class="schedule-row">
                     <span style="color:#888;">Est. Delivery</span>
                     <span style="font-weight:600;">
-                        {{ optional($shipment->estimated_delivery)->format('M d, Y') ?? 'May 15, 2026' }}
+                        {{ $shipment->estimated_delivery->format('M d, Y') ?? 'Apr 15, 2026' }}
                     </span>
                 </div>
                 <div class="schedule-row">
                     <span style="color:#888;">Transit Time</span>
-                    <span style="font-weight:600;">5 days</span>
+                    <span style="font-weight:600;">{{ $shipment->transit_time ?? '3 days' }}</span>
                 </div>
             </div>
 
