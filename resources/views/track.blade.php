@@ -586,7 +586,7 @@ if ($isDone) {
                 </div>
                 <div class="map-pin-label">
                     <i class="fas fa-circle" style="color:#1a73e8; font-size:8px"></i>
-                    {{ $shipment->current_city ?? '17988 S. Oakland Dr Aurora, CO 80813' }}
+                    {{ $shipment->current_city ?? '#98146 115 SW 108th Street Burien Washington' }}
                 </div>
                 <div class="full-map">
                     <iframe
@@ -685,7 +685,7 @@ if ($isDone) {
                 </iframe>
                 <div class="map-address">
                     <i class="fas fa-map-marker-alt me-1" style="color:#e53935; font-size:11px"></i>
-                    {{ $shipment->current_address ?? '17988 S. Oakland Dr Aurora, CO 80813' }}
+                    {{ $shipment->current_address ?? '#98146 115 SW 108th Street Burien Washington' }}
                 </div>
                 <div class="map-coords">
                     Last updated: {{ now()->format('M d, Y – h:i A') }}
