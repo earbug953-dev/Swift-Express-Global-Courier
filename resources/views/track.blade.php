@@ -497,7 +497,6 @@
     </div>
 
     <!-- ── URGENT NOTICE (On Hold only) ─────────────────── -->
-    @if($status === 'on_hold' || $status === 'On Hold')
     
 
     <!-- ── TWO-COLUMN LAYOUT ─────────────────────────────── -->
