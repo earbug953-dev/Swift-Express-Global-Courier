@@ -476,7 +476,7 @@
                 @if($status === 'on_hold' || $status === 'On Hold')
                     <div class="notice-text">
                         <i class="fas fa-exclamation-triangle"></i>
-                        Important Notice: Customs Inspection
+                        Important Notice: Held at customs for inspection
                     </div>
                 @endif
             </div>
@@ -534,7 +534,7 @@ if ($isDone) {
 } else {
     $dotClass = 'dot-pending';  // yellow/gray
     $tagClass = 'tag-pending';
-    $tagText = 'Pending';
+    $tagText = 'current';
 }
     @endphp
     <div class="timeline-item">
