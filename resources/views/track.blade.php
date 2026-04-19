@@ -476,7 +476,7 @@
                 @if($status === 'on_hold' || $status === 'On Hold')
                     <div class="notice-text">
                         <i class="fas fa-exclamation-triangle"></i>
-                        Important Notice: Delivery Clearance
+                        Important Notice: Customs Inspection
                     </div>
                 @endif
             </div>
@@ -501,9 +501,7 @@
     <div class="urgent-box">
         <h6><i class="fas fa-exclamation-circle me-1"></i> URGENT NOTICE</h6>
         <p>
-            A delivery fee is required to enable the prompt processing and dispatch of your protocol package.
-            This fee covers the necessary administrative and logistical costs associated with handling your
-            shipment, ensuring that it is processed efficiently and reaches its destination without delays.
+            Held at customs for inspection
         </p>
         <div class="mb-2">
             <span style="font-size:12px; color:#555;">Delivery Fee:</span>
