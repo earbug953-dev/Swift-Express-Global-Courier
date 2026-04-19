@@ -498,20 +498,7 @@
 
     <!-- ── URGENT NOTICE (On Hold only) ─────────────────── -->
     @if($status === 'on_hold' || $status === 'On Hold')
-    <div class="urgent-box">
-        <h6><i class="fas fa-exclamation-circle me-1"></i> URGENT NOTICE</h6>
-        <p>
-            Held at customs for inspection
-        </p>
-        <div class="mb-2">
-            <span style="font-size:12px; color:#555;">Delivery Fee:</span>
-            <span class="fee-amount ms-2">$500.00</span>
-        </div>
-        {{-- <a href="{{ route('payment.checkout', $shipment->id) }}" class="btn btn-danger btn-sm fw-bold px-4">
-            <i class="fas fa-credit-card me-1"></i> Pay Delivery Fee
-        </a> --}}
-    </div>
-    @endif
+    
 
     <!-- ── TWO-COLUMN LAYOUT ─────────────────────────────── -->
     <div class="row g-3">
