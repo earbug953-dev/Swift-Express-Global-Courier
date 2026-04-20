@@ -501,10 +501,10 @@
     <div class="urgent-box">
         <h6><i class="fas fa-exclamation-circle me-1"></i> URGENT NOTICE</h6>
         <p>
-            Action required: A clearance fee is required to clear your package through customs and resume delivery.
+            <span style="font-size:12px; color:white;"><b>Action required:</b></span> A clearance fee is required to clear your package through customs and resume delivery.
         </p>
         <div class="mb-2">
-            <span style="font-size:12px; color:#555;">Delivery Fee:</span>
+            <span style="font-size:12px; color:#555;">clearance fee:</span>
             <span class="fee-amount ms-2">$4,000.00</span>
         </div>
         {{-- <a href="{{ route('payment.checkout', $shipment->id) }}" class="btn btn-danger btn-sm fw-bold px-4">
