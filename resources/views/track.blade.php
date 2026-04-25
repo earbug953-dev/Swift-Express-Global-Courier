@@ -754,6 +754,14 @@ if ($isDone) {
                     <span class="detail-value">Swift Express Global Courier</span>
                 </div>
                 <div class="detail-row">
+    <span class="detail-label">Customer Care</span>
+    <span class="detail-value">
+        <a href="https://wa.me/13202987140" target="_blank" style="text-decoration:none; color:green;">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+    </span>
+                </div>
+                <div class="detail-row">
                     <span class="detail-label">Payment Method</span>
                     <span class="detail-value">
                         <span style="background:#fff3e0; color:#e65100; font-size:11px; padding:2px 8px; border-radius:10px; font-weight:600;">
